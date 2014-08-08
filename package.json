@@ -1,0 +1,25 @@
+{
+  "name": "nodetest",
+  "version": "0.0.0",
+  "description": "I have never used Node.js before, let's change that",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/basilveerman/nodetest.git"
+  },
+  "main": "nodetest.js",
+  "author": "Basil Veerman",
+  "license": "GPLv3",
+  "bugs": {
+    "url": "https://github.com/basilveerman/nodetest/issues"
+  },
+  "homepage": "https://github.com/basilveerman/nodetest",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "karma": "^0.12.21",
+    "grunt-contrib-uglify": "^0.5.1",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-contrib-cssmin": "^0.10.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-mocha-test": "^0.11.0"
+  }
+}
