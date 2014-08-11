@@ -4,7 +4,7 @@ module.exports = function(grunt) {
         pkg: grunt.file.readJSON('package.json'),
         banner: '/* <%= pkg.title || pkg.name %> - v<%= pkg.version %>\n' +
             '<%= pkg.homepage ? "* " + pkg.homepage + "\\n" : "" %>' +
-            '* Copyright (c) <%= grunt.template.today("yyyy-mm-dd") %> <%= pkg.author.name %> */\n',
+            '* Copyright (c) <%= grunt.template.today("yyyy-mm-dd") %> <%= pkg.author.organization %> */\n',
 
         jshint: {
             files: ['Gruntfile.js', 'lib/*.js', 'tests/*.js']
@@ -19,6 +19,18 @@ module.exports = function(grunt) {
             }
         },
 
+        browserify: {
+            js: {
+                src: '<%= pkg.name %>.js',
+                dest: 'dist/<%= pkg.name %>.js',
+                options: {
+                    bundleOptions: {
+                        standalone: '<%= pkg.name %>'
+                    }
+                }
+            }
+        },
+
         uglify: {
             options: {
                 banner: '<%= banner %>'
@@ -29,17 +41,6 @@ module.exports = function(grunt) {
             }
         },
 
-        // cssmin: {
-        //     compress : {
-        //         options: {
-        //             banner: '<%= banner %>'
-        //         },
-        //         files : {
-        //             'project.min.css': ['1.css', '2.css', '...']
-        //         }
-        //     }
-        // },
-
         watch: {
             gruntfile: {
                 files: '<%= jshint.files %>',
@@ -48,14 +49,14 @@ module.exports = function(grunt) {
         },
     });
 
+    grunt.loadNpmTasks('grunt-browserify');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-jshint');
-    // grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-mocha-test');
 
-    grunt.registerTask('compress', 'uglify');
     grunt.registerTask('unittest', 'mochaTest');
     grunt.registerTask('test', ['jshint', 'mochaTest']);
+    grunt.registerTask('build', ['browserify', 'uglify']);
     grunt.registerTask('default', 'test');
 };
