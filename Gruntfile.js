@@ -1,3 +1,5 @@
+"use strict";
+
 module.exports = function(grunt) {
     grunt.initConfig({
         
@@ -7,7 +9,10 @@ module.exports = function(grunt) {
             '* Copyright (c) <%= grunt.template.today("yyyy-mm-dd") %> <%= pkg.author.organization %> */\n',
 
         jshint: {
-            files: ['Gruntfile.js', 'lib/*.js', 'tests/*.js']
+            files: ['Gruntfile.js', 'lib/*.js', 'tests/*.js'],
+            options: {
+                jshintrc: '.jshintrc',
+            },
         },
 
         mochaTest: {
@@ -57,6 +62,6 @@ module.exports = function(grunt) {
 
     grunt.registerTask('unittest', 'mochaTest');
     grunt.registerTask('test', ['jshint', 'mochaTest']);
-    grunt.registerTask('build', ['browserify', 'uglify']);
-    grunt.registerTask('default', 'test');
+    grunt.registerTask('build', ['jshint', 'mochaTest', 'browserify', 'uglify']);
+    grunt.registerTask('default', 'build');
 };

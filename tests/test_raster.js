@@ -1,3 +1,5 @@
+"use strict";
+
 var pdp = require('../pdp.js');
 
 var chai = require('chai');
