@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 module.exports = function(grunt) {
     grunt.initConfig({
@@ -32,6 +32,24 @@ module.exports = function(grunt) {
                     bundleOptions: {
                         standalone: '<%= pkg.name %>'
                     }
+                }
+            },
+
+            require: {
+                src: [ '<%= pkg.name %>.js' ],
+                dest: './dist/<%= pkg.name %>.require.js',
+                options: {
+                    alias: [ './<%= pkg.name %>.js:' ]
+                }
+            },
+
+            tests: {
+                src: [ 'test/suite.js' ],
+                dest: './dist/browserified_tests.js',
+                options: {
+                external: [ './<%= pkg.name %>.js' ],
+                    // Embed source map for tests
+                    debug: true
                 }
             }
         },
