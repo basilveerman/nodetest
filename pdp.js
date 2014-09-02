@@ -5,5 +5,6 @@ module.exports = {
     controls: require('./lib/controls.js'),
     raster: require('./lib/raster.js'),
     vector: require('./lib/vector.js'),
-    cftime: require('./lib/cftime.js')
+    cftime: require('./lib/cftime.js'),
+    map: require('./lib/map.js')
 };
