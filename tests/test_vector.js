@@ -1,15 +1,21 @@
+/*jshint expr: true*/
+
 "use strict";
 
-var pdp = require('../pdp.js');
+var pdp = require("../pdp.js");
 
-var chai = require('chai');
+var chai = require("chai");
 var expect = chai.expect;
 
 describe("vector", function() {
-    describe("test()", function() {
-        it("Should greet you kindly", function() {
-            var greeting = pdp.vector.test();
-            expect(greeting).to.equal("i'm a vector");
+    describe("generateGetFeatureInfoParams()", function() {
+        it("Should exist", function() {
+            expect(pdp.vector.generateGetFeatureInfoParams).to.exist;
+        });
+    });
+    describe("getLoadingPopup()", function() {
+        it("Should exist", function() {
+            expect(pdp.vector.getLoadingPopup).to.exist;
         });
     });
 });
