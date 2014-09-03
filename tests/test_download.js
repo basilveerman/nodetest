@@ -7,7 +7,7 @@ var pdp = require("../pdp.js");
 var chai = require("chai");
 var expect = chai.expect;
 
-describe("controls", function() {
+describe("download", function() {
     describe("createFormatOptions()", function() {
         it("Should exist", function() {
             expect(pdp.download.createFormatOptions).to.exist;
