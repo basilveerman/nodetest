@@ -27,7 +27,7 @@ module.exports = function(grunt) {
         browserify: {
             js: {
                 src: '<%= pkg.name %>.js',
-                dest: 'dist/<%= pkg.name %>.js',
+                dest: './browser/dist/<%= pkg.name %>.js',
                 options: {
                     bundleOptions: {
                         standalone: '<%= pkg.name %>'
@@ -35,17 +35,9 @@ module.exports = function(grunt) {
                 }
             },
 
-            require: {
-                src: [ '<%= pkg.name %>.js' ],
-                dest: './dist/<%= pkg.name %>.require.js',
-                options: {
-                    alias: [ './<%= pkg.name %>.js:' ]
-                }
-            },
-
             tests: {
-                src: [ 'test/suite.js' ],
-                dest: './dist/browserified_tests.js',
+                src: [ './tests/test*.js' ],
+                dest: './browser/tests/browserified_tests.js',
                 options: {
                 external: [ './<%= pkg.name %>.js' ],
                     // Embed source map for tests
@@ -59,8 +51,8 @@ module.exports = function(grunt) {
                 banner: '<%= banner %>'
             },
             dist: {
-                src: 'dist/<%= pkg.name %>.js',
-                dest: 'dist/<%= pkg.name %>.<%= pkg.version %>.min.js'
+                src: './browser/dist/<%= pkg.name %>.js',
+                dest: './browser/dist/<%= pkg.name %>.<%= pkg.version %>.min.js'
             }
         }
     });
@@ -72,6 +64,6 @@ module.exports = function(grunt) {
 
     grunt.registerTask('unittest', 'mochaTest');
     grunt.registerTask('test', ['jshint', 'mochaTest']);
-    grunt.registerTask('build', ['jshint', 'mochaTest', 'browserify', 'uglify']);
-    grunt.registerTask('default', 'build');
+    grunt.registerTask('build', ['browserify', 'uglify']);
+    grunt.registerTask('default', ['test', 'build']);
 };
